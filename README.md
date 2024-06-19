@@ -1,14 +1,24 @@
 # code-simplify
 A python tool library that covers a wide range of common tools to simplify your work and reduce repetitive code.
 
+
+# What is in it
+* `http utils` based on `aiohttp`, including `SSE HANDLER`, `HEAD`, `GET`, `POST`, `OPTIONS`, `PUT`, `PATCH`, `DELETE`.
+* `logger template` based on logging in std.
+* `common crud` based on SQLAlchemy, including `GET`, `LIST`, `CREATE`, `BULK SAVE`, `UPDATE`, `TOTAL`, `GET PAGING`, `DELETE`, `PHYSICAL DELETE`, `EXECUTE SQL`
+
+
 # How to use
-just see `examples` package.
+just see [examples](https://github.com/Yaocool/code-simplify/tree/main/examples) package.
+
 
 # How to install
+
 ## PyPI (recommend)
 ```shell script
 $ pip install code-simplify
 ```
+
 
 ## Local compilation
 ```shell script
