@@ -2,7 +2,23 @@
 
 All notable changes to this project will be documented here.
 
-## [v1.2.0] - 2024-07-20
+## [v1.2.1] - 2024-07-06
+
+### Fix
+
+- Make `log`, `http_utils` and `models` modules visible.
+
+### Test
+
+- Add logger test case.
+
+### Docs
+
+- Update `CHANGELOG.md`.
+- Add `Contributors Wall` to `README.md`.
+
+
+## [v1.2.0] - 2024-07-05
 
 ### Style
 

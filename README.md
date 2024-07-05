@@ -27,3 +27,9 @@ $ pip install wheel
 $ python setup.py bdist_wheel
 $ pip install ./dist/code_simplify-*-py3-none-any.whl
 ```
+
+
+# Contributors Wall
+<a href="https://github.com/Yaocool/code-simplify/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Yaocool/code-simplify&max=200" />
+</a >
