@@ -1,5 +1,5 @@
-from models.errors import Error
-from http_utils.http_request import sse_handler
+from code_simplify.models.errors import Error
+from code_simplify.http_utils.http_request import sse_handler
 
 
 # custom errors
