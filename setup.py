@@ -8,7 +8,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name='code-simplify',
-    version='1.2.1',
+    version='1.2.2',
     description='A python tool library that covers a wide range of common tools to simplify your work and reduce '
                 'repetitive code.',
     long_description=long_description,
@@ -18,6 +18,6 @@ setup(
     author='Ozzy',
     author_email='ozzycharon@gmail.com',
     license='MIT',
-    install_requires=['aiohttp'],
+    install_requires=['aiohttp', 'pydantic', 'SQLAlchemy'],
     packages=find_packages(exclude=['examples']),
 )
