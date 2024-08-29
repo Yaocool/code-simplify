@@ -5,11 +5,11 @@ from typing import List, Any
 from pydantic import BaseModel
 from sqlalchemy import Column, String, DateTime, Boolean, Result
 
-from code_simplify.crud.rdb import Base, RDBClient
+from code_simplify.crud.rdb import RDBBase, RDBClient
 
 
 # class Model which inherits from Base
-class User(Base):
+class User(RDBBase):
 
     def __init__(
             self,
