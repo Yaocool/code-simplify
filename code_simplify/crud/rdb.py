@@ -65,9 +65,13 @@ class RDBClient(Generic[ModelType, SchemaMutType, SchemaResourceType]):
         :return: SchemaResourceType | ModelType
         """
         db = db or self.session()
-        filter_conditions = [getattr(model, primary_key_column_name) == primary_key_id]
+        filter_conditions = [
+            getattr(model, primary_key_column_name) == primary_key_id
+        ]
         if deleted_status_column_name:
-            filter_conditions.append(getattr(model, deleted_status_column_name) == range_all)
+            filter_conditions.append(
+                getattr(model, deleted_status_column_name) == range_all
+            )
         data = db.query(model).filter(*filter_conditions).first()
         if obj_out:
             return obj_out(**data.dict())
@@ -100,7 +104,9 @@ class RDBClient(Generic[ModelType, SchemaMutType, SchemaResourceType]):
                 if hasattr(model, k) and v:
                     filter_conditions.append(getattr(model, k) == v)
         if deleted_status_column_name:
-            filter_conditions.append(getattr(model, deleted_status_column_name) == range_all)
+            filter_conditions.append(
+                getattr(model, deleted_status_column_name) == range_all
+            )
         data = db.query(model).filter(*filter_conditions).all()
         if obj_out:
             return [obj_out(**o.__dict__) for o in data]
@@ -147,7 +153,9 @@ class RDBClient(Generic[ModelType, SchemaMutType, SchemaResourceType]):
         if total == 0:
             return total, []
         skip = page_size * (page - 1)
-        data = query.order_by(order_by_column_name).offset(skip).limit(page_size).filter(*filter_conditions).all()
+        data = query.order_by(order_by_column_name).offset(skip).limit(page_size).filter(
+            *filter_conditions
+        ).all()
         if obj_out:
             return total, [obj_out(**o.__dict__) for o in data]
         db.close()
@@ -291,7 +299,9 @@ class RDBClient(Generic[ModelType, SchemaMutType, SchemaResourceType]):
             _id = primary_key_id
         setattr(db_obj, primary_key_column_name, _id)
         try:
-            db.query(model).filter(getattr(model, primary_key_column_name) == _id).update(update_data)
+            db.query(model).filter(
+                getattr(model, primary_key_column_name) == _id
+            ).update(update_data)
             if auto_commit:
                 db.commit()
         except SQLAlchemyError as e:
@@ -326,9 +336,13 @@ class RDBClient(Generic[ModelType, SchemaMutType, SchemaResourceType]):
         db = db or self.session()
         try:
             if isinstance(primary_key_ids, list):
-                filter_condition = getattr(model, primary_key_column_name).in_(primary_key_ids)
+                filter_condition = getattr(
+                    model, primary_key_column_name
+                ).in_(primary_key_ids)
             else:
-                filter_condition = getattr(model, primary_key_column_name) == primary_key_ids
+                filter_condition = getattr(
+                    model, primary_key_column_name
+                ) == primary_key_ids
             db.query(model).filter(filter_condition).update(
                 {deleted_status_column_name: True})
             if auto_commit:
@@ -358,7 +372,9 @@ class RDBClient(Generic[ModelType, SchemaMutType, SchemaResourceType]):
         """
         db = db or self.session()
         try:
-            obj = db.query(model).filter(getattr(model, primary_key_column_name) == primary_key_id).first()
+            obj = db.query(model).filter(
+                getattr(model, primary_key_column_name) == primary_key_id
+            ).first()
             if obj:
                 db.delete(obj)
             if auto_commit:
