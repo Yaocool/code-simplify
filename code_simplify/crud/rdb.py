@@ -4,13 +4,12 @@ from typing import Any, Dict, Generic, List, Type, TypeVar, Tuple
 from pydantic import BaseModel
 from sqlalchemy import create_engine, Result
 from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import declarative_base, Session, scoped_session
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text
 
-Base = declarative_base()
-ModelType = TypeVar("ModelType", bound=Base)
+RDBBase = declarative_base()
+ModelType = TypeVar("ModelType", bound=RDBBase)
 SchemaMutType = TypeVar("SchemaMutType", bound=BaseModel)
 SchemaResourceType = TypeVar("SchemaResourceType", bound=BaseModel)
 
@@ -41,7 +40,7 @@ class RDBClient(Generic[ModelType, SchemaMutType, SchemaResourceType]):
             echo=echo,
             **kwargs
         )
-        self.session = sessionmaker(bind=engine)
+        self.session = scoped_session(sessionmaker(bind=engine))
 
     def get(
             self,
