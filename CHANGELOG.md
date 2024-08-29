@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented here.
 
+## [v1.2.2] - 2024-08-29
+
+### Performance
+
+- Use `scoped_session` to manage session.
+
+### Refactor
+
+- Rename `Base` to `RDBBase` in `rdb` module.
+
+### Test
+
+- Update `crud` test case.
+
+
 ## [v1.2.1] - 2024-07-06
 
 ### Fix
