@@ -7,8 +7,8 @@ from inspect import iscoroutinefunction
 from aiohttp import ClientSession, ClientTimeout, ContentTypeError
 from aiohttp.hdrs import METH_HEAD, METH_GET, METH_OPTIONS, METH_POST, METH_PUT, METH_PATCH, METH_DELETE
 
-from models.base import BaseResponse
-from models.errors import RequestTimeoutError, InternalError, Error
+from code_simplify.models.base import BaseResponse
+from code_simplify.models.errors import RequestTimeoutError, InternalError, Error
 
 logger = logging.getLogger(__name__)
 
