@@ -1,0 +1,7 @@
+{
+  "include": ["code_simplify", "examples", "tests", "setup.py"],
+  "pythonVersion": "3.12",
+  "typeCheckingMode": "basic",
+  "venvPath": ".",
+  "venv": ".venv"
+}

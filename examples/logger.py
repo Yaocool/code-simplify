@@ -2,7 +2,6 @@ import logging
 
 from code_simplify.log.logger import setup_logger
 
-
 logger = logging.getLogger(__name__)
 
 if __name__ == '__main__':

@@ -1,6 +1,10 @@
 __all__ = [
-    "Error", "InternalError", "OtherInternalError",  "RequestTimeoutError",
-    "BadRequestError", "SSEHandlerError"
+    "BadRequestError",
+    "Error",
+    "InternalError",
+    "OtherInternalError",
+    "RequestTimeoutError",
+    "SSEHandlerError"
 ]
 
 
