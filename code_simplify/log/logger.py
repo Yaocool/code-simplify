@@ -3,7 +3,6 @@ import os
 import sys
 import traceback
 from logging.handlers import RotatingFileHandler
-from typing import Optional
 
 FAILED_UP_PATH = "logs"
 DEFAULT_FORMAT = (
@@ -20,13 +19,13 @@ logging.setLogRecordFactory(logging.getLogRecordFactory())
 def setup_logger(
         level: int = logging.INFO,
         debug: bool = False,
-        filename: Optional[str] = None,
+        filename: str | None = None,
         log_path: str = ".",
         max_bytes: int = 100 * 1024 * 1024,
         backup_count: int = 5,
-        log_name: Optional[str] = None,
-        warn_level_logs: Optional[list[str]] = None,
-        error_level_logs: Optional[list[str]] = None,
+        log_name: str | None = None,
+        warn_level_logs: list[str] | None = None,
+        error_level_logs: list[str] | None = None,
 ) -> logging.Logger:
     logger = logging.getLogger(log_name)
     logger.setLevel(level)
@@ -57,7 +56,7 @@ def setup_logger(
     )
     for warn_log in warn_logs:
         logger = logging.getLogger(warn_log)
-        logger.setLevel(logging.WARN)
+        logger.setLevel(logging.WARNING)
 
     error_logs = (
         error_level_logs + ERROR_LOGGERS
@@ -77,14 +76,14 @@ def disable_logging(libs: list[str]):
         logging.getLogger(lib).disabled = True
 
 
-def traceback_error(logger, ex: Exception, msg: str = None):
+def traceback_error(logger: logging.Logger, ex: Exception, msg: str | None = None) -> None:
     logger.error(ex)
     tb = traceback.extract_tb(ex.__traceback__)
     ignore_locations = [sys.prefix, "homebrew/Cellar/python", "site-packages"]
     callstack_in_user_code = []
-    for ex in tb:
-        if not any(location in ex.filename for location in ignore_locations):
-            callstack_in_user_code.append(ex)
+    for frame in tb:
+        if not any(location in frame.filename for location in ignore_locations):
+            callstack_in_user_code.append(frame)
     sb = ""
     for frame in callstack_in_user_code:
         sb += frame.__str__() + "\n"
