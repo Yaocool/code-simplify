@@ -7,7 +7,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name='code-simplify',
-    version='1.2.4',
+    version='1.2.5',
     description='A python tool library that covers a wide range of common tools to simplify your work and reduce '
                 'repetitive code.',
     long_description=long_description,
